@@ -18,8 +18,8 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('borrow_id')->references('id_borrow')->on('borrow')->cascadeOnDelete();
-            $table->foreign('return_id')->references('id_return')->on('return')->cascadeOnDelete();
+            $table->foreign('borrow_id')->references('id_borrow')->on('borrows')->cascadeOnDelete();
+            $table->foreign('return_id')->references('id_return')->on('return_books')->cascadeOnDelete();
         });
     }
 
