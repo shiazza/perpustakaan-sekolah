@@ -2,7 +2,11 @@
 
 @section('content')
 
-<h1 class="text-2xl font-semibold mb-4">Dashboard</h1>
-  <p>Selamat datang di dashboard.</p>
+<div>
+    <h1 class="text-base ">Welcome, Admin  </h1>
+  <h1 class="text-xl">Dashboard</h>
+</div>
+
+
 
 @endsection

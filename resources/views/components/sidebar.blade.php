@@ -1,4 +1,4 @@
-<div class="float h-screen w-64 mx-8 my-4 bg-white shadow-xl rounded-r-2xl p-6 space-y-6">
+<div class=" fixed h-screen w-64 mx-8 my-4 bg-white transition delay-150 duration-300 ease-in-out hover:-translate-x-4 shadow-xl rounded-2xl p-6 space-y-6">
   <!-- Header -->
   <div class="flex items-center space-x-3">
     <div class="text-3xl text-orange-500">
