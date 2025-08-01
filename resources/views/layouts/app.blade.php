@@ -5,11 +5,16 @@
   <title>{{ $title ?? 'App' }}</title>
   @vite('resources/css/app.css')
 </head>
-<body class="flex bg-gray-100 min-h-screen">
-  @include('components.sidebar')
 
-  <main class="flex-1 p-6">
-    @yield('content')
-  </main>
+<body class="flex">
+
+    {{-- Sidebar tetap --}}
+    @include('components.sidebar')
+
+    {{-- Konten utama --}}
+    <div class="ml-74 w-full min-h-screen bg-white p-6">
+        @yield('content')
+    </div>
+
 </body>
 </html>
