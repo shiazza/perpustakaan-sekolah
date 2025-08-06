@@ -14,6 +14,7 @@
     {{-- Konten utama --}}
     <div class="ml-74 w-full min-h-screen bg-white p-6">
         @yield('content')
+         <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     </div>
 
 </body>
