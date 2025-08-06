@@ -49,12 +49,12 @@
     </div>
 
     <!-- Logo bawah -->
-        <div class="absolute bottom-[50px] w-full ">
+    <div class="absolute bottom-[50px] w-full ">
         <div class="max-w-[1400px] mx-auto flex justify-end items-center pr-10 space-x-5">
             <img src="/assets/logo.png" alt="Logo" class="w-10 h-15" />
             <span class="justify-center text-white font-medium text-xl">T-Book</span>
         </div>
-        </div>
+    </div>
 
         <script>
 

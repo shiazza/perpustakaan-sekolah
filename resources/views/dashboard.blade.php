@@ -12,7 +12,7 @@
     </div>
 
     <!-- Search bar -->
-    <div class="flex items-center rounded-xl px-3 py-1 bg-white shadow-lg">
+    <div class="flex items-center rounded-xl px-3 py-1 bg-white border-gray-200 border-t shadow-lg">
         <input type="search" placeholder="Search"
             class="bg-white px-2 text-sm focus:outline-none" />
         <img src="" alt="" class="w-4 h-4 ml-2" />
@@ -30,6 +30,7 @@
 
 </div>
 
+  <!-- Card -->
 <div class="flex mt-8 justify-center space-x-7 items-center">
     <div class="block rounded-3xl bg-yellow-400 p-20 text-surface shadow-1 dark:bg-surface-dark dark:text-white"></div>
     <div class="block rounded-3xl bg-orange-300 p-20 text-surface shadow-1 dark:bg-surface-dark dark:text-white"></div>
@@ -37,12 +38,12 @@
     <div class="block rounded-3xl bg-orange-500 p-20 text-surface shadow-1 dark:bg-surface-dark dark:text-white"></div>
 </div>
 
-<div class="flex rounded-3xl mt-8 bg-white p-20 shadow-2xl justify-between items-center">
-    
-<div class="max-w-sm w-full bg-white rounded-lg shadow-sm dark:bg-gray-800 p-4 md:p-6">
+  <!-- Diagram -->
+<div class="flex rounded-3xl mt-8 bg-yellow p-20 shadow-2xl justify-between items-center">   
+<div class="max-w-sm w-full bg-white rounded-lg shadow-sm dark:bg-white p-4 md:p-6">
   <div class="flex justify-between">
     <div>
-      <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">32.4k</h5>
+      <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-black pb-2">32.4k</h5>
       <p class="text-base font-normal text-gray-500 dark:text-gray-400">Users this week</p>
     </div>
     <div
