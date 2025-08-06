@@ -15,4 +15,9 @@ class DashboardController extends Controller
     {
         return view('login');
     }
+
+    public function index3()
+    {
+        return view('landing_page');
+    }
 }
