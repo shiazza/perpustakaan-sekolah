@@ -8,8 +8,8 @@
 </head>
 <body class="h-screen w-screen bg-[url('/assets/image2.jpg')] bg-cover bg-center relative font-sans">
 
-            <div class="flex items-center h-full bg-black/30 px-10">
-            <div class="w-full max-w-[1400px] mx-auto flex justify-start pl-10">
+    <div class="flex items-center h-full bg-black/30 px-10">
+        <div class="w-full max-w-[1400px] mx-auto flex justify-start pl-10">
 
             <div class="w-full max-w-sm h-[550px] ml-20 bg-white/10 backdrop-blur-md brightness-100 p-10 rounded-xl text-white shadow-lg ">
                 <div>
