@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
+    // It's for dummy test view
     public function index()
     {
         return view('dashboard');

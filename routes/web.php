@@ -1,13 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DashboardController;
+// use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\web\DashboardController;
+use App\Http\Controllers\web\AuthController;
 
+// Dummy route for test view
 Route::get('/1', function () {
     return view('welcome');
 });
 
- Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.view');
- Route::get('/login', [DashboardController::class, 'index2'])->name('login.view');
- Route::get('/', [DashboardController::class, 'index3'])->name('landing_page.view');
+// Authentication routes
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.view');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+});
 
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
+});
