@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_role');
             $table->string('name');
             $table->string('email');
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('address')->nullable();
             $table->bigInteger('nisn')->nullable()->unique();
