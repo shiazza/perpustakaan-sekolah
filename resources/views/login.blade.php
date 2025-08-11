@@ -7,12 +7,25 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="h-screen w-screen bg-[url('/assets/image2.jpg')] bg-cover bg-center relative font-sans">
+
             <div class="flex items-center h-full bg-black/30 px-10">
             <div class="w-full max-w-[1400px] mx-auto flex justify-start pl-10">
 
-             <div class="w-full max-w-sm h-[550px] ml-20 bg-white/10 backdrop-blur-lg p-10 rounded-xl bg-clip-padding backdrop-filter backdrop-blur-sm border-[0.1pt] border-gray-400 bg-opacity-20 text-white shadow-lg">
+             <div class="w-full max-w-sm h-[550px] ml-20 bg-white/10 backdrop-blur-md brightness-100 p-10 rounded-xl bg-clip-padding backdrop-filter backdrop-blur-sm border-[0.1pt] border-gray-400 bg-opacity-20 text-white shadow-lg ">
+                <div>
                 <h2 class="text-2xl font-bold mb-2 text-center">Silahkan Login</h2>
                 <p class="text-sm mb-10 text-gray-200 text-center">Masukkan email dan sandi untuk melanjutkan</p>
+
+                <form>
+
+                <label class="block mb-2 text-sm font-semibold">Nama pengguna</label>
+                <div class="relative mb-4">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">@</span>
+                    <input type="text" placeholder="contohnama" class="pl-8 pr-3 py-2 text-black w-full rounded-full bg-white placeholder-gray-500 placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-orange-400 ">
+                </div>
+                </div>
+
+            <label class="block mb-2 text-sm font-semibold">Password</label>
                <form method="POST" action="{{ route('login.submit') }}">
                     @csrf
                 <input name="email" type="email"
@@ -42,12 +55,13 @@
         </div>
     </div>
 
-        <div class="absolute bottom-[50px] w-full">
-        <div class="max-w-[1400px] mx-auto flex justify-end items-center pr-10 space-x-1">
-            <img src="/assets/logo.svg" alt="Logo" class="w-15 h-15"/>
-            <span class="text-white font-medium text-xl">T-Book</span>
+    <!-- Logo bawah -->
+    <div class="absolute bottom-[50px] w-full ">
+        <div class="max-w-[1400px] mx-auto flex justify-end items-center pr-10 space-x-5">
+            <img src="/assets/logo.png" alt="Logo" class="w-10 h-15" />
+            <span class="justify-center text-white font-medium text-xl">T-Book</span>
         </div>
-        </div>
+    </div>
 
         <script>
             function togglePassword() {
