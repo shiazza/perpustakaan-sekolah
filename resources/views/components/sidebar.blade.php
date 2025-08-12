@@ -1,4 +1,4 @@
-<div class=" fixed h-screen w-64 mx-8 my-4 bg-white transition delay-150 duration-300 ease-in-out hover:-translate-x-4 shadow-xl rounded-2xl p-6 space-y-6">
+<div class="fixed h-screen w-64 mx-4 my-4 bg-white transition delay-150 duration-300 ease-in-out hover:translate-x-2 shadow-xl rounded-2xl p-6 space-y-6">
   <!-- Header -->
   <div class="flex items-center space-x-3">
     <div class="text-3xl text-orange-500">
@@ -14,7 +14,7 @@
   <nav class="space-y-4 text-sm text-gray-700 font-medium">
     <!-- Dashboard -->
     <a href="#" class="flex items-center justify-between hover:text-orange-500">
-      <div class="flex items-center space-x-2">
+      <div class="flex items-center space-x-2"> 
         <span class="text-lg">📊</span>
         <span>Dashboard</span>
       </div>

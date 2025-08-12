@@ -6,28 +6,43 @@
   <title>login page</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="h-screen w-screen bg-[url('/assets/image.png')] bg-cover bg-center relative font-sans">
+<body class="h-screen w-screen bg-[url('/assets/image2.jpg')] bg-cover bg-center relative font-sans">
 
             <div class="flex items-center h-full bg-black/30 px-10">
             <div class="w-full max-w-[1400px] mx-auto flex justify-start pl-10">
+<<<<<<< HEAD
             <div class="w-full max-w-sm h-[550px] ml-20 bg-white/10 backdrop-blur-lg p-10 rounded-xl text-white shadow-lg">
+=======
+
+             <div class="w-full max-w-sm h-[550px] ml-20 bg-white/10 backdrop-blur-md brightness-100 p-10 rounded-xl bg-clip-padding backdrop-filter backdrop-blur-sm border-[0.1pt] border-gray-400 bg-opacity-20 text-white shadow-lg ">
+                <div>
+>>>>>>> cb0a1cb9d79e8a6d631be4ef810f66f61b5a271d
                 <h2 class="text-2xl font-bold mb-2 text-center">Silahkan Login</h2>
                 <p class="text-sm mb-10 text-gray-200 text-center">Masukkan email dan sandi untuk melanjutkan</p>
 
                 <form>
 
-                <label class="block mb-2 text-sm font-semiboqld">Nama pengguna</label>
+                <label class="block mb-2 text-sm font-semibold">Nama pengguna</label>
                 <div class="relative mb-4">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">@</span>
                     <input type="text" placeholder="contohnama" class="pl-8 pr-3 py-2 text-black w-full rounded-full bg-white placeholder-gray-500 placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-orange-400 ">
                 </div>
+                </div>
 
             <label class="block mb-2 text-sm font-semibold">Password</label>
+               <form method="POST" action="{{ route('login.submit') }}">
+                    @csrf
+                <input name="email" type="email"
+                class="w-full px-4 py-2 mb-4 rounded-full bg-gray-100/70 text-black placeholder-black
+                        backdrop-blur-md bg-clip-padding backdrop-filter bg-opacity-10
+                        focus:outline-none focus:ring-1 focus:border-gray-400" 
+                placeholder="Masukkan email" required autofocus>
             <div class="relative mb-4">
-            <input id="passwordInput" type="password" placeholder="12345678" class="pl-4 pr-10 py-2 text-black w-full rounded-full bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400">
-            
+            <input id="passwordInput" type="password" name="password" placeholder="Masukkan kata sandi" class="w-full px-4 py-2 mb-4 rounded-full bg-gray-100/70 text-black placeholder-black
+                        backdrop-blur-md bg-clip-padding backdrop-filter bg-opacity-10
+                        focus:outline-none focus:ring-1 focus:border-gray-400">
             <svg id="eyeIcon" onclick="togglePassword()" xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5 absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-gray-500"
+                class="h-5 w-5 absolute right-3 top-1/3 -translate-y-1/2 cursor-pointer text-gray-500"
                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path id="eyePath" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M15 12a3 3 0 11-6 0 3 3 0 016 0z 
@@ -36,24 +51,23 @@
                 -1.274 4.057-5.065 7-9.542 7 
                 -4.477 0-8.268-2.943-9.542-7z" />
             </svg>
-
             </div>
 
-                <button type="submit" class="w-full py-2 mt-10 mb-8 bg-gradient-to-r from-orange-400 to-yellow-500 text-white rounded-full font-semibold hover:opacity-90 transition">Login</button>
+                <button type="submit" class="w-full py-2 mt-10 mb-8 backdrop-filter backdrop-blur-lg bg-amber-500/80 text-white rounded-full font-semibold hover:opacity-90 transition">Login</button>
                 </form>
             </div>
         </div>
     </div>
 
-        <div class="absolute bottom-[50px] w-full">
+    <!-- Logo bawah -->
+    <div class="absolute bottom-[50px] w-full ">
         <div class="max-w-[1400px] mx-auto flex justify-end items-center pr-10 space-x-5">
-            <img src="/assets/logo.png" alt="Logo" class="w-10 h-10" />
-            <span class="text-white font-medium text-xl">T-Book</span>
+            <img src="/assets/logo.png" alt="Logo" class="w-10 h-15" />
+            <span class="justify-center text-white font-medium text-xl">T-Book</span>
         </div>
-        </div>
+    </div>
 
         <script>
-
             function togglePassword() {
                 const input = document.getElementById('passwordInput');
                 const eyePath = document.getElementById('eyePath');
@@ -71,7 +85,6 @@
                 }
 
             }
-        
 
         </script>
 </body>
