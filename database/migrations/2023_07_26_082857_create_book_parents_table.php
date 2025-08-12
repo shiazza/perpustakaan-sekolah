@@ -12,14 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('book_parents', function (Blueprint $table) {
-            $table->bigIncrements('id_bp');
+            $table->id('id_bp');
             $table->string('title');
             $table->string('writers');
             $table->text('sinopsis')->nullable();
-            $table->string('category');
+            $table->unsignedBigInteger('category_id');
             $table->string('image')->nullable();
-            $table->timestamps();
+            $table->string('publisher')->nullable();
             $table->softDeletes();
+            $table->timestamps();
+
+            $table->foreign('category_id')->references('id_cate')->on('categories')->cascadeOnDelete();
         });
     }
 

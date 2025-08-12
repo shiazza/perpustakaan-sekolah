@@ -2,16 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Fine extends Model
+class Inventory extends Model
 {
     use SoftDeletes;
 
-    protected $primaryKey = 'id_fns';
-    protected $fillable = ['borrow_id', 'return_id', 'value', 'damaged', 'lost', 'paid'];
+    protected $primaryKey = 'id_list';
+    protected $fillable = ['user_id', 'bc_id', 'is_fav', 'borrow_id', 'return_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function bookChild()
+    {
+        return $this->belongsTo(BookChild::class, 'bc_id', 'id_bc');
+    }
 
     public function borrow()
     {
