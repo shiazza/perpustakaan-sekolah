@@ -11,20 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('book_lists', function (Blueprint $table) {
-            $table->bigIncrements('id_list');
+        Schema::create('inventory', function (Blueprint $table) {
+            $table->id('id_list');
             $table->uuid('user_id');
             $table->unsignedBigInteger('bc_id');
-            $table->unsignedBigInteger('id_trans');
-            $table->enum('is_favorite', ['yes', 'no'])->default('no');
-            $table->timestamp('borrow_duration_start')->nullable();
-            $table->timestamp('borrow_duration_end')->nullable();
-            $table->timestamps();
+            $table->boolean('is_fav')->default(false);
+            $table->unsignedBigInteger('borrow_id')->nullable();
+            $table->unsignedBigInteger('return_id')->nullable();
             $table->softDeletes();
+            $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('bc_id')->references('id_bc')->on('book_children')->cascadeOnDelete();
-            $table->foreign('id_trans')->references('id_trans')->on('transactions')->cascadeOnDelete();
+            $table->foreign('borrow_id')->references('id_borrow')->on('borrows')->nullOnDelete();
+            $table->foreign('return_id')->references('id_return')->on('returns')->nullOnDelete();
         });
     }
 
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('book_lists');
+        Schema::dropIfExists('inventories');
     }
 };

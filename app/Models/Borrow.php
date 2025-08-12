@@ -8,16 +8,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Borrow extends Model
 {
-    use HasFactory, SoftDeletes;
+    use SoftDeletes;
 
     protected $primaryKey = 'id_borrow';
+    protected $fillable = ['borrow_duration_start', 'borrow_duration_end', 'date', 'status'];
 
-    protected $fillable = [
-        'date'
-    ];
-
-    public function transactions()
+    public function inventory()
     {
-        return $this->hasMany(Transaction::class, 'borrow_id', 'id_borrow');
+        return $this->hasMany(Inventory::class, 'borrow_id', 'id_borrow');
+    }
+
+    public function fines()
+    {
+        return $this->hasMany(Fine::class, 'borrow_id', 'id_borrow');
     }
 }

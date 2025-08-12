@@ -12,23 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->unsignedBigInteger('id_role');
-            $table->string('name');
-            $table->string('email');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->uuid('id')->primary();
+            $table->unsignedBigInteger('role');
+            $table->string('nama');
+            $table->string('email')->unique();
+            $table->bigInteger('NISN')->nullable(); 
+            $table->string('number')->nullable();
             $table->string('address')->nullable();
-            $table->bigInteger('nisn')->nullable()->unique();
-            $table->bigInteger('nis')->nullable()->unique();
-            $table->integer('number')->nullable();
-            $table->enum('gender', ['Laki-laki', 'Perempuan']);
+            $table->bigInteger('NIK')->nullable();
+            $table->boolean('gender')->comment('0 = female, 1 = male');
             $table->string('photo')->nullable();
-            $table->rememberToken();
-            $table->timestamps();
             $table->softDeletes();
+            $table->timestamps();
 
-            $table->foreign('id_role')->references('id_role')->on('roles')->onDelete('cascade');
+            $table->foreign('role')->references('id_role')->on('roles')->cascadeOnDelete();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
