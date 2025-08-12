@@ -12,13 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('logs', function (Blueprint $table) {
-            $table->bigIncrements('id_log');
+            $table->id('id_log');
             $table->unsignedBigInteger('log_msg')->nullable();
             $table->unsignedBigInteger('log_return')->nullable();
             $table->unsignedBigInteger('log_borrow')->nullable();
             $table->unsignedBigInteger('log_books')->nullable();
-            $table->timestamps();
+            $table->uuid('user_id');
+            $table->timestamp('log_time')->nullable();
             $table->softDeletes();
+            $table->timestamps();
+
+            $table->foreign('log_msg')->references('id_message')->on('message')->nullOnDelete();
+            $table->foreign('log_return')->references('id_return')->on('return')->nullOnDelete();
+            $table->foreign('log_borrow')->references('id_borrow')->on('borrow')->nullOnDelete();
+            $table->foreign('log_books')->references('id_bc')->on('book_children')->nullOnDelete();
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
 

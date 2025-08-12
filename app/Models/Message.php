@@ -8,9 +8,23 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Message extends Model
 {
-    use HasFactory, SoftDeletes;
+    use SoftDeletes;
 
     protected $primaryKey = 'id_message';
+    protected $fillable = ['sender_id', 'receiver_id', 'message', 'sent_at'];
 
-    protected $fillable = ['message'];
+    public function sender()
+    {
+        return $this->belongsTo(User::class, 'sender_id', 'id');
+    }
+
+    public function receiver()
+    {
+        return $this->belongsTo(User::class, 'receiver_id', 'id');
+    }
+
+    public function logs()
+    {
+        return $this->hasMany(Log::class, 'log_msg', 'id_message');
+    }
 }

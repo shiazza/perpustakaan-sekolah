@@ -11,11 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('messages', function (Blueprint $table) {
-            $table->bigIncrements('id_message');
-            $table->string('message');
-            $table->timestamps();
+        Schema::create('message', function (Blueprint $table) {
+            $table->id('id_message');
+            $table->uuid('sender_id');
+            $table->uuid('receiver_id');
+            $table->text('message');
+            $table->timestamp('sent_at')->nullable();
             $table->softDeletes();
+            $table->timestamps();
+
+            $table->foreign('sender_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('receiver_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
 
