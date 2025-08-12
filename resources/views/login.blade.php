@@ -10,7 +10,6 @@
 
             <div class="flex items-center h-full bg-black/30 px-10">
             <div class="w-full max-w-[1400px] mx-auto flex justify-start pl-10">
-
             <div class="w-full max-w-sm h-[550px] ml-20 bg-white/10 backdrop-blur-lg p-10 rounded-xl text-white shadow-lg">
                 <h2 class="text-2xl font-bold mb-2 text-center">Silahkan Login</h2>
                 <p class="text-sm mb-10 text-gray-200 text-center">Masukkan email dan sandi untuk melanjutkan</p>
