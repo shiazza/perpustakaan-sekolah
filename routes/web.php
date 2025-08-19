@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BooklistController;
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\web\DashboardController;
@@ -21,3 +22,5 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
 });
+Route::get('/booklist', [BooklistController::class, 'index'])->name('booklist');
+
