@@ -44,21 +44,17 @@
                 <tr class="bg-orange-600">
                     <th class="py-3 px-4 border">No</th>
                     <th class="py-3 px-4 border">Name</th>
-                    <th class="py-3 px-4 border">Class</th>
-                    <th class="py-3 px-4 border">Book</th>
-                    <th class="py-3 px-4 border">Borrow</th>
-                    <th class="py-3 px-4 border">Return</th>
+                    <th class="py-3 px-4 border">Author</th>
+                    <th class="py-3 px-4 border">Stok</th>
                     <th class="py-3 px-4 border">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td class="py-2 px-4 border text-black">1</td>
-                    <td class="py-2 px-4 border text-black">parel</td>
-                    <td class="py-2 px-4 border text-black">XII-RPL</td>
-                    <td class="py-2 px-4 border text-black">1945 MDPL</td>
-                    <td class="py-2 px-4 border text-black">12-08-2025</td>
-                    <td class="py-2 px-4 border text-black">19-08-2025</td>
+                    <td class="py-2 px-4 border text-black">1945 mdpl</td>
+                    <td class="py-2 px-4 border text-black">Parel</td>
+                    <td class="py-2 px-4 border text-black">3</td> 
                     <td class="py-2 px-4 border text-black">
                         <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Edit</button>
                         <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Delete</button>
