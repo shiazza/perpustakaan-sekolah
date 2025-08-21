@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>{{ $title ?? 'App' }}</title>
+  <title>{{ $title ?? ' Dashboard' }}</title>
   @vite('resources/css/app.css')
 </head>
 

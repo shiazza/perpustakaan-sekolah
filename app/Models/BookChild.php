@@ -8,21 +8,23 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BookChild extends Model
 {
-    use HasFactory, SoftDeletes;
+    use SoftDeletes;
 
     protected $primaryKey = 'id_bc';
+    protected $fillable = ['bp_id', 'ISBN', 'Condition', 'Status'];
 
-    protected $fillable = [
-        'bp_id', 'ISBN', 'condition'
-    ];
-
-    public function parent()
+    public function parentBook()
     {
         return $this->belongsTo(BookParent::class, 'bp_id', 'id_bp');
     }
 
-    public function bookLists()
+    public function inventories()
     {
-        return $this->hasMany(BookList::class, 'bc_id', 'id_bc');
+        return $this->hasMany(Inventory::class, 'bc_id', 'id_bc');
+    }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'bc_id', 'id_bc');
     }
 }

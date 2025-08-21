@@ -3,25 +3,24 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Inventory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\Contracts\HasApiTokens;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasApiTokens, SoftDeletes;
 
-    protected $primaryKey = 'id';
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
+    public $incrementing = false; // karena UUID
+    
+    protected $keyType = 'string';
+
     protected $fillable = [
-        'role', 'nama', 'email', 'NISN', 'number', 'address', 'NIK', 'gender', 'photo'
+        'id', 'role', 'nama', 'email', 'NISN', 'number', 'address', 'NIK', 'gender', 'photo'
     ];
 
     /**
@@ -47,13 +46,38 @@ class User extends Authenticatable
         ];
     }
 
-    public function role()
+    public function roleData()
     {
         return $this->belongsTo(Role::class, 'role', 'id_role');
     }
 
-    public function bookLists()
+    public function inventories()
     {
-        return $this->hasMany(BookList::class, 'user_id', 'id');
+        return $this->hasMany(Inventory::class, 'user_id', 'id');
+    }
+
+    public function messagesSent()
+    {
+        return $this->hasMany(Message::class, 'sender_id', 'id');
+    }
+
+    public function messagesReceived()
+    {
+        return $this->hasMany(Message::class, 'receiver_id', 'id');
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'user_id', 'id');
+    }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'user_id', 'id');
+    }
+
+    public function logs()
+    {
+        return $this->hasMany(Log::class, 'user_id', 'id');
     }
 }

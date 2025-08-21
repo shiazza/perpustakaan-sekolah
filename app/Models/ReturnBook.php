@@ -8,17 +8,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ReturnBook extends Model
 {
-    use HasFactory, SoftDeletes;
+    use SoftDeletes;
 
     protected $table = 'return';
     protected $primaryKey = 'id_return';
+    protected $fillable = ['date', 'Condition'];
 
-    protected $fillable = [
-        'date'
-    ];
-
-    public function transactions()
+    public function inventory()
     {
-        return $this->hasMany(Transaction::class, 'return_id', 'id_return');
+        return $this->hasMany(Inventory::class, 'return_id', 'id_return');
+    }
+
+    public function fines()
+    {
+        return $this->hasMany(Fine::class, 'return_id', 'id_return');
     }
 }
