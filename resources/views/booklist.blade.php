@@ -11,9 +11,10 @@
     <div class="flex justify-between items-center mb-6">
         <input type="text" placeholder="Search" 
             class="w-2/3 border-2 border-black rounded-xl px-4 py-2 text-black focus:outline-none">
-        <button class="bg-orange-600 text-white px-6 py-2 rounded-xl hover:bg-orange-700">
-            Add Book
-        </button>
+    <button onclick="window.location='{{ route('addbook') }}'" class="bg-orange-600 text-white px-6 py-2 rounded-xl hover:bg-orange-700">
+        Add Book
+    </button>
+
     </div>
 
  

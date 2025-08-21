@@ -7,7 +7,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-cover bg-center min-h-screen flex items-center justify-center" style="background-image: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f');">
-
   <!-- Card Form -->
   <div class="bg-white/90 backdrop-blur-sm shadow-lg rounded-2xl w-full max-w-lg p-8">
     <h1 class="text-2xl font-bold text-center mb-6">Add Book</h1>
@@ -53,7 +52,7 @@
 
     <!-- Back Button -->
     <div class="mt-6">
-      <a href="#" class="inline-block text-orange-500 border border-orange-500 px-4 py-2 rounded-full hover:bg-orange-500 hover:text-white transition">
+      <a href="{{route ('booklist') }}" class="inline-block text-orange-500 border border-orange-500 px-4 py-2 rounded-full hover:bg-orange-500 hover:text-white transition">
         Back
       </a>
     </div>
