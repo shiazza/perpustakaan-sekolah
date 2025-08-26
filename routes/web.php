@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AddbookController;
 use App\Http\Controllers\BooklistController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\web\DashboardController;
@@ -24,5 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
 });
 Route::get('/booklist', [BooklistController::class, 'index'])->name('booklist');
+
 Route::get('/addbook', [AddbookController::class, 'index'])->name('addbook');
+Route::get('/category', [CategoryController::class, 'index'])->name('category');
 
