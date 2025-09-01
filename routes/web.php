@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\AddbookController;
-use App\Http\Controllers\BooklistController;
-use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AddbookController;
+use App\Http\Controllers\CategoryContoller;
+use App\Http\Controllers\BooklistController;
 // use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\web\DashboardController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\web\AuthController;
+use App\Http\Controllers\web\DashboardController;
 
 // Dummy route for test view
 Route::get('/1', function () {
@@ -28,4 +29,6 @@ Route::get('/booklist', [BooklistController::class, 'index'])->name('booklist');
 
 Route::get('/addbook', [AddbookController::class, 'index'])->name('addbook');
 Route::get('/category', [CategoryController::class, 'index'])->name('category');
+
+Route::get('/category', [CategoryContoller::class, 'index'])->name('category.index');
 
