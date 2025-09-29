@@ -12,12 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('book_children', function (Blueprint $table) {
-            $table->id('id_bc');
-            $table->unsignedBigInteger('bp_id');
-            $table->bigInteger('ISBN')->nullable();
-            $table->string('condition');
-            $table->enum('status', ['available','borrowed','lost','damaged'])->default('available');
-            $table->softDeletes();
+            $table->increments('id_bc');
+            $table->unsignedInteger('bp_id'); // sesuai ERD nama bp_id
+            $table->string('ISBN');
+            $table->string('Condition')->nullable();
+            $table->enum('Status', ['available','borrowed','lost','damaged'])->default('available');
             $table->timestamps();
 
             $table->foreign('bp_id')->references('id_bp')->on('book_parents')->cascadeOnDelete();

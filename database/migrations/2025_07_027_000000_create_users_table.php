@@ -12,20 +12,27 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->unsignedBigInteger('role');
-            $table->string('nama');
+            // primary key sesuai ERD dan seeder (string)
+            $table->string('id')->primary();
+            // kolom FK sesuai seeder: id_role mengacu ke roles.id_role
+            $table->unsignedInteger('id_role');
+            // kolom yang digunakan di seeder
+            $table->string('name');
             $table->string('email')->unique();
-            $table->bigInteger('NISN')->nullable(); 
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
+            $table->string('gender')->nullable();
+            // tambahan kolom optional (jika mau, sesuaikan)
+            $table->unsignedBigInteger('NISN')->nullable();
             $table->string('number')->nullable();
-            $table->string('address')->nullable();
-            $table->bigInteger('NIK')->nullable();
-            $table->boolean('gender')->comment('0 = female, 1 = male');
+            $table->text('address')->nullable();
+            $table->unsignedBigInteger('NIK')->nullable();
             $table->string('photo')->nullable();
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes(); // Add this line for soft deletes
 
-            $table->foreign('role')->references('id_role')->on('roles')->cascadeOnDelete();
+            $table->foreign('id_role')->references('id_role')->on('roles')->cascadeOnDelete();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

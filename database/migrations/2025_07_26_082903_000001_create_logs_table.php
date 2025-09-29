@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('logs', function (Blueprint $table) {
-            $table->id('id_log');
-            $table->unsignedBigInteger('log_msg')->nullable();
-            $table->unsignedBigInteger('log_return')->nullable();
-            $table->unsignedBigInteger('log_borrow')->nullable();
-            $table->unsignedBigInteger('log_books')->nullable();
-            $table->uuid('user_id');
-            $table->timestamp('log_time')->nullable();
-            $table->softDeletes();
+            $table->increments('id_log');
+            $table->unsignedInteger('log_msg')->nullable();
+            $table->unsignedInteger('log_return')->nullable();
+            $table->unsignedInteger('log_borrow')->nullable();
+            $table->unsignedInteger('log_books')->nullable();
+            $table->string('action')->nullable();
+            $table->string('user_id');
+            $table->timestamp('log_time')->useCurrent();
             $table->timestamps();
 
             $table->foreign('log_msg')->references('id_message')->on('message')->nullOnDelete();

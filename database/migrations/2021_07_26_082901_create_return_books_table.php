@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('returns', function (Blueprint $table) {
-            $table->id('id_return');
-            $table->timestamp('date')->nullable();
+        Schema::create('return', function (Blueprint $table) {
+            $table->increments('id_return');
+            $table->timestamp('date')->useCurrent();
             $table->string('Condition')->nullable();
-            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('return_books');
+        Schema::dropIfExists('return');
     }
 };

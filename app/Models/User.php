@@ -13,11 +13,11 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasApiTokens, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
-    public $incrementing = false; // karena UUID
-    
+    protected $primaryKey = 'id';
     protected $keyType = 'string';
+    public $incrementing = false; // karena UUID
 
     protected $fillable = [
         'id', 'role', 'nama', 'email', 'NISN', 'number', 'address', 'NIK', 'gender', 'photo'
