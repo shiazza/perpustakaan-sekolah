@@ -19,4 +19,3 @@ Route::middleware('auth')->group(function () {
     Route::get('/addbook', [AddbookController::class, 'index'])->name('addbook');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
-
