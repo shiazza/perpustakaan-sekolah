@@ -3,8 +3,8 @@
 use App\Http\Controllers\AddbookController;
 use App\Http\Controllers\BooklistController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\web\DashboardController;
-use App\Http\Controllers\web\AuthController;
+use App\Http\Controllers\web\Master\DashboardController;
+use App\Http\Controllers\web\Master\Auth\AuthController;
 
 // Authentication routes
 Route::middleware('guest')->group(function () {

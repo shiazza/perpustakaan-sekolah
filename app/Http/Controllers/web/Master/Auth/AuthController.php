@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\web;
+namespace App\Http\Controllers\web\Master\Auth;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -31,9 +31,10 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
             
-            // Debug ini
+            // Debug initialization log
             \Log::info('Login success', [
-                'user_id' => Auth::id(),
+                'is_authenticated' => Auth::check(),
+                'user_id' => Auth::user()->id,
                 'email' => Auth::user()->email,
                 'session_id' => session()->getId()
             ]);
