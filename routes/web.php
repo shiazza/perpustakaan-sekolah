@@ -14,12 +14,9 @@ Route::middleware('guest')->group(function () {
 
 // Protected routes
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
+    Route::get('/', [DashboardController::class, 'showDashboard'])->name('dashboard');
     Route::get('/booklist', [BooklistController::class, 'index'])->name('booklist');
     Route::get('/addbook', [AddbookController::class, 'index'])->name('addbook');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
-
-// Langsung ke dashboard
-Route::get('/', [DashboardController::class, 'showDashboard']);
 

@@ -15,11 +15,6 @@ class DashboardController extends Controller
      * Show the dashboard with statistics
      * @return \Illuminate\View\View
      */
-
-    public function LoginValidation(){
-        
-    }
-    
     public function showDashboard()
     {
         try {
@@ -71,7 +66,7 @@ class DashboardController extends Controller
                 ->limit(5)
                 ->get();
 
-            return view('dashboard', compact(
+            return view('master.dashboard', compact(
                 'totalUsers',
                 'totalBooks',
                 'booksOnLoan',
@@ -86,7 +81,7 @@ class DashboardController extends Controller
             \Log::error('Dashboard Error: ' . $e->getMessage());
             
             // Return view with error and empty data
-            return view('dashboard', [
+            return view('master.dashboard', [
                 'totalUsers' => 0,
                 'totalBooks' => 0,
                 'booksOnLoan' => 0,

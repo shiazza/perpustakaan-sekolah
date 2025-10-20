@@ -4,7 +4,7 @@
 
 <!-- Header bar -->
 <div class="flex items-center justify-between px-4 py-2 bg-white rounded-xl">
-
+ 
     <!-- Welcome -->
     <div>
         <h1 class="font-normal text-base">Welcome, Admin</h1>
@@ -17,7 +17,6 @@
             class="bg-white px-2 text-sm focus:outline-none" />
         <img src="" alt="" class="w-4 h-4 ml-2" />
     </div>
-
 </div>
 
   <!-- Card -->
