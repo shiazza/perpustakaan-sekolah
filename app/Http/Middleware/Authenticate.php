@@ -13,7 +13,7 @@ class Authenticate
     {
         \Log::info('Auth Middleware Check', [
             'is_authenticated' => Auth::check(),
-            'user_id' => Auth::id(),
+            'user_id' => Auth::user()->id ?? null,
             'session_id' => session()->getId(),
             'url' => $request->url()
         ]);
