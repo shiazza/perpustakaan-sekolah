@@ -15,7 +15,7 @@ class AuthController extends Controller
      */
     public function showLoginForm()
     {
-        return view('login');
+        return view('auth.login');
     }
 
     /**
@@ -28,16 +28,23 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+            
+            // Debug ini
+            \Log::info('Login success', [
+                'user_id' => Auth::id(),
+                'email' => Auth::user()->email,
+                'session_id' => session()->getId()
+            ]);
+            
+            return redirect()->intended(route('dashboard'));
         }
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
     }
-
     /**
      * Handle user registration.
      */
@@ -56,6 +63,7 @@ class AuthController extends Controller
         ]);
 
         Auth::login($user);
+        $request->session()->regenerate();
 
         return redirect()->route('dashboard');
     }
@@ -69,6 +77,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login.view');
+        return redirect()->route('login');
     }
 }

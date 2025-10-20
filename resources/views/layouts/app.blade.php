@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <title>{{ $title ?? ' Dashboard' }}</title>
   @vite('resources/css/app.css')
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body class="flex">
 
-    {{-- Sidebar tetap --}}
+    {{-- Sidebar --}}
     @include('components.sidebar')
 
     {{-- Konten utama --}}

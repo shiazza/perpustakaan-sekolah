@@ -12,14 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('notifications', function (Blueprint $table) {
-            $table->id('id_notif');
-            $table->uuid('user_id');
+            $table->bigIncrements('id_notif');
+            $table->string('user_id');
             $table->string('title');
             $table->text('content');
             $table->boolean('is_read')->default(false);
-            $table->timestamp('created_at')->useCurrent();
-            $table->softDeletes();
+
+            // gunakan timestamps() sekali saja
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });

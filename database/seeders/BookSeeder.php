@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\BookChild;
 use App\Models\BookParent;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class BookSeeder extends Seeder
 {
@@ -22,6 +20,7 @@ class BookSeeder extends Seeder
                 'writers'  => 'J.R.R. Tolkien',
                 'sinopsis' => 'A young hobbit, Frodo Baggins, inherits a ring of immense power and must travel across Middle-earth to destroy it.',
                 'category' => 'Fantasy',
+                'image'    => 'https://example.com/images/the-lord-of-the-rings.jpg',
             ],
             [
                 'title'    => 'Pride and Prejudice',
@@ -139,24 +138,22 @@ class BookSeeder extends Seeder
             ]
         ];
 
-        // Loop through each book to create BookParent and BookChild records
+        // Loop through each book to create BookParent records
         foreach ($bookData as $data) {
-            $bookParent = BookParent::create([
-                'title'    => $data['title'],
-                'writers'  => $data['writers'],
-                'sinopsis' => $data['sinopsis'],
-                'category' => $data['category'],
-                'image'    => 'https://example.com/images/' . Str::slug($data['title']) . '.jpg', // Dummy image URL
-            ]);
-
-            // Create 3 physical copies for each parent book
-            for ($i = 0; $i < 3; $i++) {
-                BookChild::create([
-                    'bp_id'     => $bookParent->id_bp,
-                    'ISBN'      => '978-0-307-' . str_pad(rand(0, 99999), 5, '0', STR_PAD_LEFT), // Generate a random ISBN
-                    'condition' => ['Good', 'Fair', 'Poor'][array_rand(['Good', 'Fair', 'Poor'])], // Random condition
-                ]);
+            if (isset($data['category'])) {
+                // Find category by name
+                $category = Category::where('name', $data['category'])->first();
+                if ($category) {
+                    $data['category_id'] = $category->id_cate;
+                } else {
+                    // Create new category if doesn't exist
+                    $newCategory = Category::create(['name' => $data['category']]);
+                    $data['category_id'] = $newCategory->id_cate;
+                }
+                unset($data['category']); // Remove category name from array
             }
+
+            BookParent::create($data);
         }
     }
 }

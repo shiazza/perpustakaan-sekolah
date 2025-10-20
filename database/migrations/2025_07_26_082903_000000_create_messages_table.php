@@ -12,12 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('message', function (Blueprint $table) {
-            $table->id('id_message');
-            $table->uuid('sender_id');
-            $table->uuid('receiver_id');
+            $table->increments('id_message');
+            $table->string('sender_id');
+            $table->string('receiver_id');
             $table->text('message');
-            $table->timestamp('sent_at')->nullable();
-            $table->softDeletes();
+            $table->timestamp('sent_at')->useCurrent();
             $table->timestamps();
 
             $table->foreign('sender_id')->references('id')->on('users')->cascadeOnDelete();
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('messages');
+        Schema::dropIfExists('message');
     }
 };

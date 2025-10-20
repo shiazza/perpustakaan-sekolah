@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('borrows', function (Blueprint $table) {
-            $table->id('id_borrow');
+        Schema::create('borrow', function (Blueprint $table) {
+            $table->increments('id_borrow');
             $table->timestamp('borrow_duration_start')->nullable();
             $table->timestamp('borrow_duration_end')->nullable();
-            $table->timestamp('date')->nullable();
+            $table->timestamp('date')->useCurrent();
             $table->enum('status', ['pending','active','completed'])->default('pending');
-            $table->softDeletes();
             $table->timestamps();
         });
     }

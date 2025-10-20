@@ -11,20 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('inventory', function (Blueprint $table) {
-            $table->id('id_list');
-            $table->uuid('user_id');
-            $table->unsignedBigInteger('bc_id');
+        Schema::create('inventories', function (Blueprint $table) {
+            $table->increments('id_list');
+            $table->string('user_id')->nullable();
+            $table->unsignedInteger('bc_id')->nullable();
             $table->boolean('is_fav')->default(false);
-            $table->unsignedBigInteger('borrow_id')->nullable();
-            $table->unsignedBigInteger('return_id')->nullable();
-            $table->softDeletes();
+            $table->unsignedInteger('borrow_id')->nullable();
+            $table->unsignedInteger('return_id')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('bc_id')->references('id_bc')->on('book_children')->cascadeOnDelete();
-            $table->foreign('borrow_id')->references('id_borrow')->on('borrows')->nullOnDelete();
-            $table->foreign('return_id')->references('id_return')->on('returns')->nullOnDelete();
+            $table->foreign('borrow_id')->references('id_borrow')->on('borrow')->nullOnDelete();
+            $table->foreign('return_id')->references('id_return')->on('return')->nullOnDelete();
         });
     }
 

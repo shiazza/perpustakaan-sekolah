@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('fines', function (Blueprint $table) {
-            $table->id('id_fns');
-            $table->unsignedBigInteger('borrow_id');
-            $table->unsignedBigInteger('return_id');
+            $table->increments('id_fns');
+            $table->unsignedInteger('borrow_id');
+            $table->unsignedInteger('return_id')->nullable();
             $table->integer('value');
             $table->string('damaged')->nullable();
             $table->string('lost')->nullable();

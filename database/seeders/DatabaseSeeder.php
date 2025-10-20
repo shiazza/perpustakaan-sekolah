@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             UserSeeder::class,
+            CategorySeeder::class, // Add this if not exists
             BookSeeder::class,
         ]);
     }
