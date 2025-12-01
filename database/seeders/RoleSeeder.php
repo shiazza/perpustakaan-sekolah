@@ -12,8 +12,22 @@ class RoleSeeder extends Seeder
         // Insert default roles into the roles table
         // Yeah, the fuggin admin role, let's gooooo....
         DB::table('roles')->insert([
-            'id_role' => 1,
-            'role' => 'Admin',
+            [
+                'id_role' => 1,
+                'role' => 'Admin',
+            ],
+            [
+                'id_role' => 2,
+                'role' => 'Siswa',
+            ],
+            [
+                'id_role' => 3,
+                'role' => 'Guru',
+            ],
+            [
+                'id_role' => 4,
+                'role' => 'Staff',
+            ],
         ]);
     }
 }

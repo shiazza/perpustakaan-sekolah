@@ -28,5 +28,8 @@ Route::middleware('auth')->group(function () {
     // Book Child CRUD routes
     Route::resource('book-child', BookChildController::class);
 
+    // User CRUD routes
+    Route::resource('user', \App\Http\Controllers\web\Master\User\UserController::class);
+
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

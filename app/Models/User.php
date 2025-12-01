@@ -20,7 +20,7 @@ class User extends Authenticatable
     public $incrementing = false; // karena UUID
 
     protected $fillable = [
-        'id', 'role', 'nama', 'email', 'NISN', 'number', 'address', 'NIK', 'gender', 'photo'
+        'id', 'id_role', 'name', 'email', 'password', 'NISN', 'number', 'address', 'NIK', 'gender', 'photo'
     ];
 
     /**
@@ -48,7 +48,7 @@ class User extends Authenticatable
 
     public function roleData()
     {
-        return $this->belongsTo(Role::class, 'role', 'id_role');
+        return $this->belongsTo(Role::class, 'id_role', 'id_role');
     }
 
     public function inventories()
