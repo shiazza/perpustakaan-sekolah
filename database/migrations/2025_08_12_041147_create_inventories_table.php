@@ -22,8 +22,8 @@ return new class extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('bc_id')->references('id_bc')->on('book_children')->cascadeOnDelete();
-            $table->foreign('borrow_id')->references('id_borrow')->on('borrow')->nullOnDelete();
-            $table->foreign('return_id')->references('id_return')->on('return')->nullOnDelete();
+            $table->foreign('borrow_id')->references('id_borrow')->on('borrows')->nullOnDelete();
+            $table->foreign('return_id')->references('id_return')->on('return_books')->nullOnDelete();
         });
     }
 

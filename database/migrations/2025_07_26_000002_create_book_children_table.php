@@ -16,8 +16,9 @@ return new class extends Migration
             $table->unsignedInteger('bp_id'); // sesuai ERD nama bp_id
             $table->string('ISBN');
             $table->string('Condition')->nullable();
-            $table->enum('Status', ['available','borrowed','lost','damaged'])->default('available');
+            $table->enum('status', ['available','borrowed','lost','damaged'])->default('available');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('bp_id')->references('id_bp')->on('book_parents')->cascadeOnDelete();
         });

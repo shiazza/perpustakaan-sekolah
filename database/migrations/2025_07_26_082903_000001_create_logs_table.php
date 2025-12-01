@@ -22,9 +22,9 @@ return new class extends Migration
             $table->timestamp('log_time')->useCurrent();
             $table->timestamps();
 
-            $table->foreign('log_msg')->references('id_message')->on('message')->nullOnDelete();
-            $table->foreign('log_return')->references('id_return')->on('return')->nullOnDelete();
-            $table->foreign('log_borrow')->references('id_borrow')->on('borrow')->nullOnDelete();
+            $table->foreign('log_msg')->references('id_message')->on('messages')->nullOnDelete();
+            $table->foreign('log_return')->references('id_return')->on('return_books')->nullOnDelete();
+            $table->foreign('log_borrow')->references('id_borrow')->on('borrows')->nullOnDelete();
             $table->foreign('log_books')->references('id_bc')->on('book_children')->nullOnDelete();
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });
