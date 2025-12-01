@@ -11,9 +11,9 @@ class BookChild extends Model
     use SoftDeletes;
 
     protected $primaryKey = 'id_bc';
-    protected $fillable = ['bp_id', 'ISBN', 'Condition', 'Status'];
+    protected $fillable = ['bp_id', 'ISBN', 'Condition', 'status'];
 
-    public function parentBook()
+    public function bookParent()
     {
         return $this->belongsTo(BookParent::class, 'bp_id', 'id_bp');
     }

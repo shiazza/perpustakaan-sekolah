@@ -127,7 +127,7 @@
             </div>
 
             <nav class="space-y-4 text-sm text-gray-700 font-medium">
-                <a href="#" class="flex items-center justify-between hover:text-orange-500">
+                <a href="{{ route('dashboard') }}" class="flex items-center justify-between hover:text-orange-500">
                     <div class="flex items-center space-x-2">
                         <span class="text-lg">📊</span>
                         <span class="sidebar-text">Dashboard</span>
@@ -136,7 +136,7 @@
                 </a>
 
                 <div class="text-gray-400 uppercase text-xs mt-4 sidebar-textsilent">Data Master</div>
-                <a href="#" class="flex items-center justify-between hover:text-orange-500">
+                <a href="{{ route('booklist') }}" class="flex items-center justify-between hover:text-orange-500">
                     <div class="flex items-center space-x-2">
                         <span class="text-lg">📚</span>
                         <span class="sidebar-text">Book List</span>

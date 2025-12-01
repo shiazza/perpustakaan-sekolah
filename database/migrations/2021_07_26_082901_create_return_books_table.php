@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('return', function (Blueprint $table) {
+        Schema::create('return_books', function (Blueprint $table) {
             $table->increments('id_return');
             $table->timestamp('date')->useCurrent();
             $table->string('Condition')->nullable();
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('return');
+        Schema::dropIfExists('return_books');
     }
 };
