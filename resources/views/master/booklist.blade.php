@@ -37,10 +37,13 @@
     <div class="flex justify-end items-center mb-4">
         <div class="space-x-2 flex mb-4">
             <a href="{{ route('book-parent.index') }}" class="bg-[#FF4343] hover:bg-[#FF4343]/80 text-white font-bold py-2 px-4 rounded">
-                Manage Book 
+                Manage Book
             </a>
             <a href="{{ route('book-child.index') }}" class="bg-[#FF9000] hover:bg-[#FF9000]/80 text-white font-bold py-2 px-4 rounded">
                 Manage Book Copies
+            </a>
+            <a href="{{ route('category.index') }}" class="bg-[#4CAF50] hover:bg-[#4CAF50]/80 text-white font-bold py-2 px-4 rounded">
+                Manage Category
             </a>
         </div>
     </div>
@@ -70,7 +73,9 @@
                         </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $bookParent->writers }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $bookParent->category->name ?? 'N/A' }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {{ $bookParent->category->name ?? 'N/A' }}
+                    </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $bookParent->publisher }}</td>
                     <td class="px-6 py-4 text-sm text-gray-500">
                         @if($bookParent->image)

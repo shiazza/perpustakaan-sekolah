@@ -5,6 +5,7 @@ use App\Http\Controllers\web\Master\Auth\AuthController;
 use App\Http\Controllers\web\Master\Book\BookChildController;
 use App\Http\Controllers\web\Master\Book\BooklistController;
 use App\Http\Controllers\web\Master\Book\BookParentController;
+use App\Http\Controllers\web\Master\Category\CategoryController;
 use App\Http\Controllers\web\Master\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,9 @@ Route::middleware('auth')->group(function () {
 
     // User CRUD routes
     Route::resource('user', \App\Http\Controllers\web\Master\User\UserController::class);
+
+    // Category CRUD routes
+    Route::resource('category', CategoryController::class);
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
