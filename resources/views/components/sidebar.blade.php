@@ -152,7 +152,7 @@
                 </a>
 
                 <div class="text-gray-400 uppercase text-xs mt-4 sidebar-textsilent">Transaction</div>
-                <a href="#" class="flex items-center justify-between hover:text-orange-500">
+                <a href="{{ route('borrow.index') }}" class="flex items-center justify-between hover:text-orange-500">
                     <div class="flex items-center space-x-2">
                         <span class="text-lg">📥</span>
                         <span class="sidebar-text">Borrow</span>

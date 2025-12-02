@@ -1,32 +1,28 @@
-# CRUD Users Implementation
+# TODO List for Borrow and Return API Controller
 
 ## Completed Tasks
 
--   [x] Create UserController in app/Http/Controllers/web/Master/User/UserController.php
--   [x] Add user routes to routes/web.php
--   [x] Create user index view (resources/views/master/user/index.blade.php)
--   [x] Create user create view (resources/views/master/user/create.blade.php) with support for multiple users
--   [x] Create user show view (resources/views/master/user/show.blade.php)
--   [x] Create user edit view (resources/views/master/user/edit.blade.php)
+-   [x] Create BorrowController with borrowBook and returnBook methods
+-   [x] Add routes for borrowing and returning books in api.php
+-   [x] Implement borrowBook method with validation and borrow record creation
+-   [x] Implement returnBook method with validation and return transaction creation
+-   [x] Add authentication middleware to borrow and return routes
+-   [x] Update BookChild status to 'borrowed' when borrowing and 'available' when returning
 
-## Features Implemented
+## Pending Tasks
 
--   Create single user
--   Create multiple users at once (bulk creation)
--   Read/List users with pagination
--   Update user information
--   Delete user (soft delete)
--   View user details
--   File upload for user photos
--   Validation for all fields
--   Error handling and success messages
+-   [ ] Test the API endpoints to ensure they work correctly
+-   [ ] Add any additional validation or business logic as needed
+-   [ ] Update documentation if required
+
+## Unit Tests Created
+
+-   [x] AuthControllerTest: Tests for login, logout, and validation
+-   [x] HomeControllerTest: Tests for index and show methods
+-   [x] BorrowControllerTest: Tests for borrowBook and returnBook methods
 
 ## Notes
 
--   Uses UUID for user IDs
--   Passwords are hashed
--   Soft deletes are enabled
--   Supports file uploads for photos
--   Bulk creation allows adding multiple users in one form
--   All views follow the existing project styling (Tailwind CSS)
--   Standardized field names to use 'name' instead of 'nama'
+-   Borrow period is set to 14 days by default, can be adjusted
+-   Fine calculation logic may need to be implemented based on return date
+-   Ensure proper error handling and user feedback

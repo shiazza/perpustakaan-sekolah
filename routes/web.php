@@ -35,5 +35,10 @@ Route::middleware('auth')->group(function () {
     // Category CRUD routes
     Route::resource('category', CategoryController::class);
 
+    // Borrow management routes
+    Route::get('/borrow', [\App\Http\Controllers\web\Master\BorrowController::class, 'index'])->name('borrow.index');
+    Route::get('/borrow/{id}', [\App\Http\Controllers\web\Master\BorrowController::class, 'show'])->name('borrow.show');
+    Route::post('/borrow/{borrow_id}/return', [\App\Http\Controllers\web\Master\BorrowController::class, 'returnBook'])->name('borrow.return');
+
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

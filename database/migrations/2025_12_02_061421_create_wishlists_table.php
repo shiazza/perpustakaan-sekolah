@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('borrows', function (Blueprint $table) {
-            $table->increments('id_borrow');
+        Schema::create('wishlists', function (Blueprint $table) {
+            $table->id('id_wishlists');
             $table->uuid('user_id');
             $table->unsignedInteger('bc_id');
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->enum('status', ['active', 'completed', 'overdue'])->default('active');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('borrows');
+        Schema::dropIfExists('wishlists');
     }
 };
