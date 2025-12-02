@@ -143,6 +143,13 @@
                     </div>
                     <span class="sidebar-text">›</span>
                 </a>
+                <a href="{{ route('user.index') }}" class="flex items-center justify-between hover:text-orange-500">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-lg">👥</span>
+                        <span class="sidebar-text">Users</span>
+                    </div>
+                    <span class="sidebar-text">›</span>
+                </a>
 
                 <div class="text-gray-400 uppercase text-xs mt-4 sidebar-textsilent">Transaction</div>
                 <a href="#" class="flex items-center justify-between hover:text-orange-500">
