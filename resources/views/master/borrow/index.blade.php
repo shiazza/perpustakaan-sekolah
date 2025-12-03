@@ -42,10 +42,23 @@
                                 {{ ucfirst($borrow->status) }}
                             </span>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                            <a href="{{ route('borrow.show', $borrow->id_borrow) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">View</a>
-                            @if($borrow->status === 'borrowed')
-                                <button class="text-yellow-600 hover:text-yellow-900" onclick="openReturnModal({{ $borrow->id_borrow }})">Return</button>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                            <a href="{{ route('borrow.show', $borrow->id_borrow) }}" class="inline-flex items-center px-3 py-1 rounded-md text-sm font-medium text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors duration-200">View</a>
+                            @if($borrow->status === 'waiting')
+                                <form method="POST" action="{{ route('borrow.approve', $borrow->id_borrow) }}" class="inline">
+                                    @csrf
+                                    <button type="submit" class="inline-flex items-center px-3 py-1 rounded-md text-sm font-medium text-green-600 bg-green-50 hover:bg-green-100 transition-colors duration-200">
+                                        Approve
+                                    </button>
+                                </form>
+                                <form method="POST" action="{{ route('borrow.cancel', $borrow->id_borrow) }}" class="inline">
+                                    @csrf
+                                    <button type="submit" class="inline-flex items-center px-3 py-1 rounded-md text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 transition-colors duration-200" onclick="return confirm('Are you sure you want to cancel this borrow request?')">
+                                        Cancel
+                                    </button>
+                                </form>
+                            @elseif($borrow->status === 'borrowed')
+                                <button class="inline-flex items-center px-3 py-1 rounded-md text-sm font-medium text-yellow-600 bg-yellow-50 hover:bg-yellow-100 transition-colors duration-200" onclick="openReturnModal({{ $borrow->id_borrow }})">Return</button>
                             @endif
                         </td>
                     </tr>

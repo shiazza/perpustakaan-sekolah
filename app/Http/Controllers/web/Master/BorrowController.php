@@ -25,40 +25,39 @@ class BorrowController extends Controller
         return view('master.borrow.show', compact('borrow'));
     }
 
-    public function returnBook(Request $request, $borrow_id)
+    public function approveBorrow($borrow_id)
     {
-        $request->validate([
-            'condition' => 'required|string',
-            'fine_value' => 'nullable|numeric|min:0',
-            'fine_status' => 'nullable|string',
-            'description' => 'nullable|string',
-        ]);
-
         $borrow = Borrow::where('id_borrow', $borrow_id)
-            ->where('status', 'borrowed')
+            ->where('status', 'waiting')
             ->firstOrFail();
 
-        DB::transaction(function () use ($borrow, $request) {
+        DB::transaction(function () use ($borrow) {
             // Update borrow status
-            $borrow->status = 'returned';
+            $borrow->status = 'borrowed';
             $borrow->save();
 
-            // Update book child status back to available
-            $borrow->bookChild->status = 'available';
+            // Update book child status to borrowed
+            $borrow->bookChild->status = 'borrowed';
             $borrow->bookChild->save();
-
-            // Create return transaction
-            $returnTransaction = new ReturnTransaction();
-            $returnTransaction->borrow_id = $borrow->id_borrow;
-            $returnTransaction->bc_id = $borrow->bc_id;
-            $returnTransaction->date = Carbon::now();
-            $returnTransaction->condition = $request->condition;
-            $returnTransaction->fine_value = $request->fine_value ?? 0;
-            $returnTransaction->fine_status = $request->fine_status ?? 'paid';
-            $returnTransaction->description = $request->description ?? '';
-            $returnTransaction->save();
         });
 
-        return redirect()->route('borrow.index')->with('success', 'Book returned successfully');
+        return redirect()->route('borrow.index')->with('success', 'Borrow request approved successfully');
+    }
+
+    public function cancelBorrow($borrow_id)
+    {
+        $borrow = Borrow::where('id_borrow', $borrow_id)
+            ->where('status', 'waiting')
+            ->firstOrFail();
+
+        DB::transaction(function () use ($borrow) {
+            // Update borrow status to cancelled
+            $borrow->status = 'cancelled';
+            $borrow->save();
+
+            // Book remains available, no need to change bookChild status
+        });
+
+        return redirect()->route('borrow.index')->with('success', 'Borrow request cancelled successfully');
     }
 }

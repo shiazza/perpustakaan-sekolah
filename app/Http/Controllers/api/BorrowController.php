@@ -9,6 +9,7 @@ use App\Models\BookChild;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
 class BorrowController extends Controller
@@ -48,31 +49,27 @@ class BorrowController extends Controller
             return response()->json(['message' => 'Book is not available for borrowing'], 400);
         }
 
-        // Check if the user already has this book borrowed
+        // Check if the user already has this book borrowed or waiting
         $existingBorrow = Borrow::where('user_id', $user->id)
             ->where('bc_id', $bc_id)
-            ->where('status', 'borrowed')
+            ->whereIn('status', ['borrowed', 'waiting'])
             ->first();
         if ($existingBorrow) {
-            return response()->json(['message' => 'You have already borrowed this book'], 400);
+            return response()->json(['message' => 'You have already borrowed this book or have a pending request'], 400);
         }
 
-        DB::transaction(function () use ($bookChild, $user, $bc_id) {
-            // Update book child status
-            $bookChild->status = 'borrowed';
-            $bookChild->save();
-
-            // Create borrow record
+        DB::transaction(function () use ($user, $bc_id) {
+            // Create borrow record with waiting status
             $borrow = new Borrow();
             $borrow->user_id = $user->id;
             $borrow->bc_id = $bc_id;
             $borrow->start_date = Carbon::now();
             $borrow->end_date = Carbon::now()->addDays(14); // Assuming 14 days borrow period
-            $borrow->status = 'borrowed';
+            $borrow->status = 'waiting';
             $borrow->save();
         });
 
-        return response()->json(['message' => 'Book borrowed successfully'], 201);
+        return response()->json(['message' => 'Borrow request submitted successfully'], 201);
     }
 
     public function returnBook(Request $request, $borrow_id)
@@ -84,6 +81,7 @@ class BorrowController extends Controller
             ->where('user_id', $user->id)
             ->where('status', 'borrowed')
             ->first();
+
         if (!$borrow) {
             return response()->json(['message' => 'Borrow record not found or already returned'], 404);
         }
@@ -91,14 +89,20 @@ class BorrowController extends Controller
         // Validate request data
         $request->validate([
             'condition' => 'required|string',
-            'fine_value' => 'nullable|numeric|min:0',
-            'fine_status' => 'nullable|string',
             'description' => 'nullable|string',
+            'proof_image' => 'nullable|image|mimes:png,jpg,jpeg',
         ]);
 
         DB::transaction(function () use ($borrow, $request) {
-            // Update borrow status
-            $borrow->status = 'returned';
+
+            // Handle Image Upload
+            $proofImagePath = null;
+            if ($request->hasFile('proof_image')) {
+                $proofImagePath = $request->file('proof_image')->store('return_proofs', 'public');
+            }
+
+            // Update borrow status to waiting
+            $borrow->status = 'waiting';
             $borrow->save();
 
             // Create return transaction
@@ -107,9 +111,13 @@ class BorrowController extends Controller
             $returnTransaction->bc_id = $borrow->bc_id;
             $returnTransaction->date = Carbon::now();
             $returnTransaction->condition = $request->condition;
-            $returnTransaction->fine_value = $request->fine_value ?? 0;
-            $returnTransaction->fine_status = $request->fine_status ?? 'paid';
+            $returnTransaction->fine_value = 0;
+            $returnTransaction->fine_status = 'no_fine';
             $returnTransaction->description = $request->description ?? '';
+
+            // Simpan path gambar jika ada
+            $returnTransaction->proof_image = $proofImagePath;
+
             $returnTransaction->save();
         });
 

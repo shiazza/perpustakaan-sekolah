@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedInteger('bc_id');
             $table->date('date');
             $table->enum('condition', ['good', 'damaged', 'lost']);
+            $table->string('proof_image')->nullable();
             $table->integer('fine_value')->nullable();
             $table->enum('fine_status', ['paid', 'unpaid'])->nullable();
             $table->text('description')->nullable();

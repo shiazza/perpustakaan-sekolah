@@ -14,6 +14,7 @@ class ReturnTransaction extends Model
         'bc_id',
         'date',
         'condition',
+        'proof_image',
         'fine_value',
         'fine_status',
         'description',
