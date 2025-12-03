@@ -10,7 +10,9 @@ use App\Http\Controllers\web\Master\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 
-
+Route::get('/welcome', function () {
+    return view('welcome');
+});
 // Authentication routes
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
