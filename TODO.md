@@ -1,32 +1,8 @@
-# CRUD Users Implementation
+# TODO: Implement Approval System for Borrow and Return
 
-## Completed Tasks
-
--   [x] Create UserController in app/Http/Controllers/web/Master/User/UserController.php
--   [x] Add user routes to routes/web.php
--   [x] Create user index view (resources/views/master/user/index.blade.php)
--   [x] Create user create view (resources/views/master/user/create.blade.php) with support for multiple users
--   [x] Create user show view (resources/views/master/user/show.blade.php)
--   [x] Create user edit view (resources/views/master/user/edit.blade.php)
-
-## Features Implemented
-
--   Create single user
--   Create multiple users at once (bulk creation)
--   Read/List users with pagination
--   Update user information
--   Delete user (soft delete)
--   View user details
--   File upload for user photos
--   Validation for all fields
--   Error handling and success messages
-
-## Notes
-
--   Uses UUID for user IDs
--   Passwords are hashed
--   Soft deletes are enabled
--   Supports file uploads for photos
--   Bulk creation allows adding multiple users in one form
--   All views follow the existing project styling (Tailwind CSS)
--   Standardized field names to use 'name' instead of 'nama'
+-   [x] Modify borrowBook method in BorrowController.php: Change borrow status from 'borrowed' to 'waiting'
+-   [x] Remove bookChild status update in borrowBook method to keep book available
+-   [x] Modify returnBook method in BorrowController.php: Change borrow status from 'returned' to 'waiting'
+-   [x] Remove bookChild status update in returnBook method to keep book available until approved
+-   [x] Add approveBorrow method in web BorrowController to approve borrow requests
+-   [x] Add approveReturn method in web BorrowController to approve return requests

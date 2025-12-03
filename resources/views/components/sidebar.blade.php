@@ -152,7 +152,7 @@
                 </a>
 
                 <div class="text-gray-400 uppercase text-xs mt-4 sidebar-textsilent">Transaction</div>
-                <a href="#" class="flex items-center justify-between hover:text-orange-500">
+                <a href="{{ route('borrow.index') }}" class="flex items-center justify-between hover:text-orange-500">
                     <div class="flex items-center space-x-2">
                         <span class="text-lg">📥</span>
                         <span class="sidebar-text">Borrow</span>
@@ -168,27 +168,37 @@
                 </a>
 
                 <div class="text-gray-400 uppercase text-xs mt-4 sidebar-textsilent">Audit</div>
-                <a href="#" class="flex items-center justify-between hover:text-orange-500">
+                <a href="{{ route('audit.books') }}" class="flex items-center justify-between hover:text-orange-500">
                     <div class="flex items-center space-x-2">
                         <span class="text-lg">📝</span>
                         <span class="sidebar-text">Report’s Book</span>
                     </div>
                     <span class="sidebar-text">›</span>
                 </a>
-                <a href="#" class="flex items-center justify-between hover:text-orange-500">
+                <a href="{{ route('audit.borrows') }}" class="flex items-center justify-between hover:text-orange-500">
                     <div class="flex items-center space-x-2">
                         <span class="text-lg">📝</span>
                         <span class="sidebar-text">Report’s Borrow</span>
                     </div>
                     <span class="sidebar-text">›</span>
                 </a>
-                <a href="#" class="flex items-center justify-between hover:text-orange-500">
+                <a href="{{ route('audit.returns') }}" class="flex items-center justify-between hover:text-orange-500">
                     <div class="flex items-center space-x-2">
                         <span class="text-lg">📝</span>
                         <span class="sidebar-text">Report’s Return</span>
                     </div>
                     <span class="sidebar-text">›</span>
                 </a>
+
+                <div class="text-gray-400 uppercase text-xs mt-4 sidebar-textsilent">Account</div>
+                <a href="#" onclick="if(confirm('Are you sure you want to logout?')) { document.getElementById('logout-form').submit(); }" class="flex items-center justify-between hover:text-orange-500">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-lg">🚪</span>
+                        <span class="sidebar-text">Logout</span>
+                    </div>
+                    <span class="sidebar-text">›</span>
+                </a>
+
             </nav>
         </div>
     </div>
@@ -203,5 +213,9 @@
         <img src="{{ asset('assets/profile.jpg') }}" alt="Profile" class="w-10 h-10 rounded-full object-cover">
     </div>
 </div>
+
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
 
 @include('components.liquid')
