@@ -10,6 +10,10 @@ use App\Http\Controllers\web\Master\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
+
 
 // Authentication routes
 Route::middleware('guest')->group(function () {
@@ -19,7 +23,7 @@ Route::middleware('guest')->group(function () {
 
 // Protected routes
 Route::middleware('auth')->group(function () {
-    Route::get('/', [DashboardController::class, 'showDashboard'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
     Route::get('/booklist', [BooklistController::class, 'index'])->name('booklist');
     // Route::get('/addbook', [AddbookController::class, 'index'])->name('addbook');
 
