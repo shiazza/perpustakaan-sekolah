@@ -51,7 +51,8 @@
                     <a href="#how-it-works" class="text-brown-700 hover:text-brown-900 text-sm font-medium transition">How It Works</a>
                     <a href="#benefits" class="text-brown-700 hover:text-brown-900 text-sm font-medium transition">Benefits</a>
                     <a href="#contact" class="text-brown-700 hover:text-brown-900 text-sm font-medium transition">Contact</a>
-                    <a href="{{ route('login') }}" class="bg-brown-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-brown-700 transition inline-block">Login</a>
+                    <button class="bg-brown-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-brown-700 transition">Login</button>
+                    <button class="bg-brown-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-brown-700 transition">Register</button>
                 </div>
             </div>
         </div>
