@@ -53,6 +53,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/return', [\App\Http\Controllers\web\Master\ReturnController::class, 'index'])->name('return.index');
     Route::get('/return/{id}', [\App\Http\Controllers\web\Master\ReturnController::class, 'show'])->name('return.show');
     Route::post('/return/{borrow_id}/approve', [\App\Http\Controllers\web\Master\ReturnController::class, 'approveReturn'])->name('return.approve');
+    Route::patch('/return/{borrow_id}/update-fine', [\App\Http\Controllers\web\Master\ReturnController::class, 'updateFine'])->name('return.updateFine');
+
 
     // Audit log routes
     Route::get('/audit/books', [\App\Http\Controllers\web\Master\AuditLogController::class, 'books'])->name('audit.books');
