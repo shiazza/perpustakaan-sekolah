@@ -159,7 +159,7 @@
                     </div>
                     <span class="sidebar-text">›</span>
                 </a>
-                <a href="#" class="flex items-center justify-between hover:text-orange-500">
+                <a href="{{ route('return.index') }}" class="flex items-center justify-between hover:text-orange-500">
                     <div class="flex items-center space-x-2">
                         <span class="text-lg">🚚</span>
                         <span class="sidebar-text">Return</span>

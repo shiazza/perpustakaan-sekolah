@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Inventory;
+// [PERBAIKAN] Import HasUuids wajib ada
+use Illuminate\Database\Eloquent\Concerns\HasUuids; 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -13,12 +15,12 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    // [PERBAIKAN] Tambahkan trait HasUuids di SINI!
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, HasUuids;
 
     protected $primaryKey = 'id';
     protected $keyType = 'string';
-    public $incrementing = false; // karena UUID
-
+    public $incrementing = false; // Wajib false karena UUID bukan Auto Increment!!!!!!!!
     protected $fillable = [
         'id', 'id_role', 'name', 'email', 'password', 'NISN', 'number', 'address', 'NIK', 'gender', 'photo'
     ];

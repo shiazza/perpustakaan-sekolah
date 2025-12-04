@@ -12,26 +12,31 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            // primary key sesuai ERD dan seeder (string)
+            // Primary key UUID (String)
             $table->string('id')->primary();
-            // kolom FK sesuai seeder: id_role mengacu ke roles.id_role
+            
+            // Foreign Key Role
             $table->unsignedInteger('id_role');
-            // kolom yang digunakan di seeder
+            
+            // Data User
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->string('gender')->nullable();
-            // tambahan kolom optional (jika mau, sesuaikan)
+            
+            // Data Tambahan
             $table->unsignedBigInteger('NISN')->nullable();
             $table->string('number')->nullable();
             $table->text('address')->nullable();
             $table->unsignedBigInteger('NIK')->nullable();
             $table->string('photo')->nullable();
+            
             $table->timestamps();
-            $table->softDeletes(); // Add this line for soft deletes
+            $table->softDeletes(); 
 
+            // Definisi Foreign Key
             $table->foreign('id_role')->references('id_role')->on('roles')->cascadeOnDelete();
         });
 
@@ -43,7 +48,12 @@ return new class extends Migration
 
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->foreignId('user_id')->nullable()->index();
+            
+            // Gunakan string karena User ID adalah UUID, bukan Integer.
+            // Jangan gunakan foreignId() bawaan.
+            // Gitu ya kurang lebih...
+            $table->string('user_id')->nullable()->index();
+            
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
             $table->longText('payload');
