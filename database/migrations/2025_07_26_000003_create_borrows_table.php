@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedInteger('bc_id');
             $table->date('start_date');
             $table->date('end_date');
-            $table->enum('status', ['active', 'completed', 'overdue', 'cancelled'])->default('active');
+            $table->enum('status', ['waiting','borrowed', 'returned', 'overdue', 'cancelled'])->default('waiting');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();

@@ -20,6 +20,10 @@ class ReturnTransaction extends Model
         'description',
     ];
 
+    protected $casts = [
+        'date' => 'date',
+    ];
+
     public function borrow()
     {
         return $this->belongsTo(Borrow::class, 'borrow_id', 'id_borrow');

@@ -44,6 +44,34 @@ class BorrowController extends Controller
         return redirect()->route('borrow.index')->with('success', 'Borrow request approved successfully');
     }
 
+    public function approveReturn($borrow_id)
+    {
+        $borrow = Borrow::where('id_borrow', $borrow_id)
+            ->where('status', 'waiting')
+            ->whereHas('returnTransaction') // memastikan sudah ada pengajuan return
+            ->with('bookChild') // pastikan eager load biar tidak null
+            ->firstOrFail();
+
+        DB::transaction(function () use ($borrow) {
+
+            // Update status Borrow menjadi returned
+            $borrow->status = 'returned';
+            $borrow->save();
+
+            // Update status BookChild kembali ke available
+            if ($borrow->bookChild) {
+                $borrow->bookChild->status = 'available';
+                $borrow->bookChild->save();
+            }
+
+            // Update ReturnTransaction status
+            $borrow->returnTransaction->fine_status = null;
+            $borrow->returnTransaction->save();
+        });
+
+        return redirect()->back()->with('success', 'Return approved successfully.');
+    }
+
     public function cancelBorrow($borrow_id)
     {
         $borrow = Borrow::where('id_borrow', $borrow_id)
