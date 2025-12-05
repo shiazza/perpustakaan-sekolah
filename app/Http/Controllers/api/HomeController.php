@@ -3,32 +3,37 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Models\BookParent;
 use Illuminate\Http\Request;
+use App\Models\BookParent;
+use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $books = BookParent::with('category')->get();
+        // 1. Buku Rekomendasi (Misal: Random 5 buku)
+        $recommendedBooks = BookParent::with(['category', 'children'])
+            ->inRandomOrder()
+            ->limit(5)
+            ->get();
+
+        // 2. Kategori Buku
+        $categories = Category::select('id_cate', 'name')->get();
+
+        // 3. Buku Terbaru (Latest 5)
+        $newestBooks = BookParent::with('category')
+            ->orderBy('created_at', 'desc')
+            ->limit(5)
+            ->get();
 
         return response()->json([
-            'message' => 'Books retrieved successfully',
-            'data' => $books,
-        ]);
-    }
-
-    public function show($id)
-    {
-        $book = BookParent::with('category', 'children')->find($id);
-
-        if (!$book) {
-            return response()->json(['message' => 'Book not found'], 404);
-        }
-
-        return response()->json([
-            'message' => 'Book details retrieved successfully',
-            'data' => $book,
+            'message' => 'Data home berhasil diambil',
+            'data' => [
+                'recommendations' => $recommendedBooks,
+                'categories' => $categories,
+                'new_arrivals' => $newestBooks,
+            ]
         ]);
     }
 }
