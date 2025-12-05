@@ -38,27 +38,36 @@
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
                                 @if($borrow->status === 'borrowed') bg-blue-100 text-blue-800
                                 @elseif($borrow->status === 'returned') bg-green-100 text-green-800
-                                @else bg-yellow-100 text-yellow-800 @endif">
+                                @else bg-red-100 text-red-800 @endif">
                                 {{ ucfirst($borrow->status) }}
                             </span>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
                             <a href="{{ route('borrow.show', $borrow->id_borrow) }}" class="inline-flex items-center px-3 py-1 rounded-md text-sm font-medium text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors duration-200">View</a>
-                            @if($borrow->status === 'waiting')
+                            @if($borrow->status === 'waiting' && !$borrow->returnTransaction)
+                                {{-- INI WAITING UNTUK BORROW --}}
                                 <form method="POST" action="{{ route('borrow.approve', $borrow->id_borrow) }}" class="inline">
                                     @csrf
                                     <button type="submit" class="inline-flex items-center px-3 py-1 rounded-md text-sm font-medium text-green-600 bg-green-50 hover:bg-green-100 transition-colors duration-200">
                                         Approve
                                     </button>
                                 </form>
+
                                 <form method="POST" action="{{ route('borrow.cancel', $borrow->id_borrow) }}" class="inline">
                                     @csrf
                                     <button type="submit" class="inline-flex items-center px-3 py-1 rounded-md text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 transition-colors duration-200" onclick="return confirm('Are you sure you want to cancel this borrow request?')">
                                         Cancel
                                     </button>
                                 </form>
-                            @elseif($borrow->status === 'borrowed')
-                                <button class="inline-flex items-center px-3 py-1 rounded-md text-sm font-medium text-yellow-600 bg-yellow-50 hover:bg-yellow-100 transition-colors duration-200" onclick="openReturnModal({{ $borrow->id_borrow }})">Return</button>
+
+                            @elseif($borrow->status === 'waiting' && $borrow->returnTransaction)
+                                {{-- INI WAITING UNTUK RETURN --}}
+                                <form method="POST" action="{{ route('borrow.approveReturn', $borrow->id_borrow) }}" class="inline">
+                                    @csrf
+                                    <button type="submit" class="inline-flex items-center px-3 py-1 rounded-md text-sm font-medium text-green-600 bg-green-50 hover:bg-green-100 transition-colors duration-200">
+                                        Approve Return
+                                    </button>
+                                </form>
                             @endif
                         </td>
                     </tr>

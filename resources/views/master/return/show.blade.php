@@ -2,11 +2,9 @@
 
 @section('content')
 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <a href="{{ route('return.index') }}" class="text-indigo-600 hover:text-indigo-900">← Back to Returns</a>
     <div class="mb-8">
         <h1 class="text-3xl font-bold text-gray-900">Return Details</h1>
-        <p class="mt-2 text-sm text-gray-600">
-            <a href="{{ route('return.index') }}" class="text-indigo-600 hover:text-indigo-900">← Back to Returns</a>
-        </p>
     </div>
 
     @if(session('success'))

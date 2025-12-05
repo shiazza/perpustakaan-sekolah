@@ -9,20 +9,22 @@ use Illuminate\Support\Facades\Auth;
 
 class Authenticate
 {
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-        \Log::info('Auth Middleware Check', [
-            'is_authenticated' => Auth::check(),
-            'user_id' => Auth::user()->id ?? null,
-            'session_id' => session()->getId(),
-            'url' => $request->url()
-        ]);
-        
+        // Jika route API → gunakan Sanctum
+        if ($request->is('api/*')) {
+            if (!$request->user('sanctum')) {
+                return response()->json(['message' => 'Unauthorized'], 401);
+            }
+            return $next($request);
+        }
+
+        // Jika route WEB
         if (!Auth::check()) {
-            \Log::warning('Not authenticated, redirecting to login');
             return redirect()->route('login');
         }
-        
+
         return $next($request);
     }
+
 }

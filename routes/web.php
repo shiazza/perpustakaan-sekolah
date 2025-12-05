@@ -48,11 +48,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/borrow/{borrow_id}/approve', [\App\Http\Controllers\web\Master\BorrowController::class, 'approveBorrow'])->name('borrow.approve');
     Route::post('/borrow/{borrow_id}/cancel', [\App\Http\Controllers\web\Master\BorrowController::class, 'cancelBorrow'])->name('borrow.cancel');
     Route::post('/borrow/{borrow_id}/return', [\App\Http\Controllers\web\Master\BorrowController::class, 'returnBook'])->name('borrow.return');
+    Route::post('/borrow/{borrow_id}/approve-return', [\App\Http\Controllers\web\Master\BorrowController::class, 'approveReturn'])->name('borrow.approveReturn');
 
     // Return management routes
     Route::get('/return', [\App\Http\Controllers\web\Master\ReturnController::class, 'index'])->name('return.index');
     Route::get('/return/{id}', [\App\Http\Controllers\web\Master\ReturnController::class, 'show'])->name('return.show');
-    Route::post('/return/{borrow_id}/approve', [\App\Http\Controllers\web\Master\ReturnController::class, 'approveReturn'])->name('return.approve');
     Route::patch('/return/{borrow_id}/update-fine', [\App\Http\Controllers\web\Master\ReturnController::class, 'updateFine'])->name('return.updateFine');
 
 
